@@ -1,2 +1,14 @@
 .aider*
 .env
+# Environment variables
+.env
+
+# Build directory
+build/
+
+# Firebase
+.firebase/
+firebase-debug.log
+
+# Node.js
+node_modules/

@@ -3,3 +3,16 @@
     "dotenv": "^16.4.7"
   }
 }
+{
+  "name": "restaurant-recommender",
+  "version": "1.0.0",
+  "description": "Restaurant recommendation app using Google Maps API",
+  "main": "app.js",
+  "scripts": {
+    "build": "node build.js",
+    "deploy": "npm run build && firebase deploy"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
