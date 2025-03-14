@@ -1,8 +1,22 @@
 // Load environment variables from .env file
-require('dotenv').config();
+const dotenv = require('dotenv');
+const fs = require('fs');
+
+// Check if .env file exists
+if (!fs.existsSync('.env')) {
+  console.error('Error: .env file not found!');
+  console.log('Creating a sample .env file...');
+  fs.writeFileSync('.env', 'GCP_MAPS_API=your_google_maps_api_key_here\nPORT=3000');
+  console.log('.env file created. Please edit it to add your Google Maps API key.');
+}
+
+// Load environment variables
+const result = dotenv.config();
+if (result.error) {
+  console.error('Error loading .env file:', result.error);
+}
 
 const http = require('http');
-const fs = require('fs');
 const path = require('path');
 
 // Get API key from environment variable
@@ -65,8 +79,14 @@ const PORT = process.env.PORT || 3000;
 // Start server
 server.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}/`);
-  console.log(`Google Maps API Key: ${apiKey ? 'Configured' : 'NOT CONFIGURED'}`);
-  if (!apiKey) {
-    console.log('Please set the GCP_MAPS_API environment variable to your Google Maps API key');
+  
+  if (!apiKey || apiKey === 'your_google_maps_api_key_here') {
+    console.log('\x1b[31mGoogle Maps API Key: NOT CONFIGURED\x1b[0m');
+    console.log('\x1b[33mPlease edit the .env file and set your Google Maps API key:\x1b[0m');
+    console.log('\x1b[33m1. Open .env file in a text editor\x1b[0m');
+    console.log('\x1b[33m2. Replace "your_google_maps_api_key_here" with your actual API key\x1b[0m');
+    console.log('\x1b[33m3. Save the file and restart the server\x1b[0m');
+  } else {
+    console.log('\x1b[32mGoogle Maps API Key: Configured ✓\x1b[0m');
   }
 });
