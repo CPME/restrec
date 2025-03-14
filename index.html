@@ -22,7 +22,21 @@
     </div>
     
     <script src="app.js"></script>
-    <!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
+    <!-- Google Maps API script - you need to add your own API key -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" onerror="handleMapsError()"></script>
+    <script>
+        function handleMapsError() {
+            showError('Google Maps API failed to load. Please check your internet connection and API key.');
+        }
+        
+        // Initialize basic functionality if Maps API isn't loaded yet
+        if (typeof showError !== 'function') {
+            function showError(message) {
+                const errorElement = document.getElementById('error-message');
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+            }
+        }
+    </script>
 </body>
 </html>

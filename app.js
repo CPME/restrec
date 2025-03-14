@@ -3,33 +3,63 @@ let map;
 let service;
 let geocoder;
 let userLocation;
+let mapsInitialized = false;
 
 // Initialize the Google Maps API
 function initMap() {
-    geocoder = new google.maps.Geocoder();
-    
-    // Create a map centered on a default location (hidden, just for Places API)
-    map = new google.maps.Map(document.createElement('div'), {
-        center: { lat: 37.7749, lng: -122.4194 }, // Default: San Francisco
-        zoom: 15
+    try {
+        geocoder = new google.maps.Geocoder();
+        
+        // Create a map centered on a default location (hidden, just for Places API)
+        map = new google.maps.Map(document.createElement('div'), {
+            center: { lat: 37.7749, lng: -122.4194 }, // Default: San Francisco
+            zoom: 15
+        });
+        
+        // Initialize the Places service
+        service = new google.maps.places.PlacesService(map);
+        
+        // Add event listener to the search button
+        document.getElementById('search-btn').addEventListener('click', findRestaurants);
+        
+        // Allow pressing Enter in the input field
+        document.getElementById('address-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                findRestaurants();
+            }
+        });
+        
+        mapsInitialized = true;
+    } catch (error) {
+        console.error("Error initializing Google Maps:", error);
+        showError("Failed to initialize Google Maps. Please check your API key and internet connection.");
+    }
+}
+
+// Add event listeners even if Maps fails to load
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('search-btn').addEventListener('click', function() {
+        if (!mapsInitialized) {
+            showError("Google Maps has not initialized. Please check your API key and internet connection.");
+            return;
+        }
+        findRestaurants();
     });
     
-    // Initialize the Places service
-    service = new google.maps.places.PlacesService(map);
-    
-    // Add event listener to the search button
-    document.getElementById('search-btn').addEventListener('click', findRestaurants);
-    
-    // Allow pressing Enter in the input field
     document.getElementById('address-input').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && mapsInitialized) {
             findRestaurants();
         }
     });
-}
+});
 
 // Find restaurants based on the entered address
 function findRestaurants() {
+    if (!mapsInitialized) {
+        showError("Google Maps has not initialized. Please check your API key and internet connection.");
+        return;
+    }
+
     const address = document.getElementById('address-input').value.trim();
     
     if (!address) {

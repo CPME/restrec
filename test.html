@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML Test Page</h1>
+    <p class="success">If you can see this page, your browser is correctly opening HTML files!</p>
+    
+    <h2>Troubleshooting Tips:</h2>
+    <ol>
+        <li>For the Restaurant Recommender app, you need a valid Google Maps API key</li>
+        <li>Replace "YOUR_API_KEY" in index.html with your actual API key</li>
+        <li>Make sure all files (index.html, app.js, styles.css) are in the same directory</li>
+        <li>Open index.html directly in your browser instead of using xdg-open</li>
+    </ol>
+    
+    <p>Click the button below to test JavaScript:</p>
+    <button id="test-button">Click Me</button>
+    <p id="result"></p>
+    
+    <script>
+        document.getElementById('test-button').addEventListener('click', function() {
+            document.getElementById('result').textContent = 'JavaScript is working correctly!';
+        });
+    </script>
+</body>
+</html>
