@@ -64,6 +64,11 @@ function showMapWithRestaurants(restaurants) {
                     <h3>${restaurant.name}</h3>
                     <div>Rating: ${restaurant.rating} ★ (${restaurant.user_ratings_total || 0} reviews)</div>
                     <div>${restaurant.vicinity}</div>
+                    <div class="map-link">
+                        <a href="https://www.google.com/maps/place/?q=place_id:${restaurant.place_id}" target="_blank">
+                            View on Google Maps
+                        </a>
+                    </div>
                 </div>
             `
         });
