@@ -22,9 +22,31 @@
     </div>
     
     <script src="app.js"></script>
-    <!-- Google Maps API script - you need to add your own API key -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" onerror="handleMapsError()"></script>
     <script>
+        // Get API key from environment or configuration
+        function getApiKey() {
+            // This will be replaced by server-side code
+            return window.GCP_MAPS_API || '';
+        }
+        
+        // Create and load the Google Maps API script dynamically
+        function loadMapsApi() {
+            const apiKey = getApiKey();
+            if (!apiKey) {
+                showError('Google Maps API key is missing. Please set the GCP_MAPS_API environment variable.');
+                return;
+            }
+            
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap`;
+            script.async = true;
+            script.defer = true;
+            script.onerror = function() {
+                handleMapsError();
+            };
+            document.body.appendChild(script);
+        }
+        
         function handleMapsError() {
             showError('Google Maps API failed to load. Please check your internet connection and API key.');
         }
@@ -37,6 +59,9 @@
                 errorElement.classList.remove('hidden');
             }
         }
+        
+        // Load the Maps API after the page has loaded
+        window.addEventListener('DOMContentLoaded', loadMapsApi);
     </script>
 </body>
 </html>
