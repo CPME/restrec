@@ -19,6 +19,18 @@
         h1 {
             color: #333;
         }
+        #map-container {
+            margin-top: 20px;
+            height: 400px;
+            border: 1px solid #ccc;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -37,10 +49,32 @@
     <button id="test-button">Click Me</button>
     <p id="result"></p>
     
+    <div id="map-container" class="hidden">
+        <h2>Map View</h2>
+        <div id="map"></div>
+    </div>
+    
     <script>
         document.getElementById('test-button').addEventListener('click', function() {
             document.getElementById('result').textContent = 'JavaScript is working correctly!';
+            
+            // Show map container for testing
+            document.getElementById('map-container').classList.remove('hidden');
         });
     </script>
+    
+    <!-- This would normally be loaded from your Google Maps API script -->
+    <script>
+        // Mock Google Maps API for testing
+        window.google = {
+            maps: {
+                Map: function() { return {}; },
+                Marker: function() { return {}; },
+                LatLng: function() { return {}; },
+                event: { addListener: function() {} }
+            }
+        };
+    </script>
+    <script src="map.js"></script>
 </body>
 </html>

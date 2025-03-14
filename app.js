@@ -29,6 +29,9 @@ function initMap() {
             }
         });
         
+        // Initialize the visible map
+        initVisibleMap();
+        
         mapsInitialized = true;
     } catch (error) {
         console.error("Error initializing Google Maps:", error);
@@ -121,7 +124,7 @@ function displayRestaurants(restaurants) {
     const resultsContainer = document.getElementById('results-list');
     resultsContainer.innerHTML = '';
     
-    restaurants.forEach(restaurant => {
+    restaurants.forEach((restaurant, index) => {
         // Calculate distance from user location
         const restaurantLocation = restaurant.geometry.location;
         const distance = calculateDistance(
@@ -137,6 +140,7 @@ function displayRestaurants(restaurants) {
         const stars = generateStarRating(restaurant.rating);
         
         card.innerHTML = `
+            <div class="restaurant-number">#${index + 1}</div>
             <div class="restaurant-name">${restaurant.name}</div>
             <div class="restaurant-rating">
                 <span class="stars">${stars}</span>
@@ -150,6 +154,9 @@ function displayRestaurants(restaurants) {
     });
     
     document.getElementById('results-container').classList.remove('hidden');
+    
+    // Show the map with restaurant pins
+    showMapWithRestaurants(restaurants);
 }
 
 // Generate star rating HTML
