@@ -1,9 +1,4 @@
 {
-  "dependencies": {
-    "dotenv": "^16.4.7"
-  }
-}
-{
   "name": "restaurant-recommender",
   "version": "1.0.0",
   "description": "Restaurant recommendation app using Google Maps API",
@@ -13,6 +8,6 @@
     "deploy": "npm run build && firebase deploy"
   },
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.4.7"
   }
 }
