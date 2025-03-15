@@ -100,6 +100,11 @@ npm run firebase:setup
 ```
 This will prompt you to select your Firebase project and set it as the default for this directory.
 
+## Live Demo
+
+The application is deployed and available at:
+[https://restaurant-recommender-a-a4f5b.web.app](https://restaurant-recommender-a-a4f5b.web.app)
+
 ## Technologies Used
 
 - JavaScript
