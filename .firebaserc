@@ -1,5 +1,5 @@
 {
   "projects": {
-    "default": "restaurant-recommender-app"
+    "default": "your-firebase-project-id"
   }
 }

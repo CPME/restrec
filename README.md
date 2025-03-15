@@ -70,7 +70,16 @@ npm start
    firebase login
    ```
 
-3. Initialize Firebase (if not already done):
+3. Create a Firebase project (if you haven't already):
+   - Go to the [Firebase Console](https://console.firebase.google.com/)
+   - Click "Add project" and follow the steps to create a new project
+   - Note your project ID for the next step
+
+4. Update the .firebaserc file with your project ID:
+   - Open the .firebaserc file
+   - Replace "your-firebase-project-id" with your actual Firebase project ID
+
+5. Initialize Firebase (if not already done):
    ```bash
    firebase init
    ```
@@ -80,10 +89,16 @@ npm start
    - Configure as a single-page app if prompted
    - Don't overwrite existing files
 
-4. Deploy to Firebase:
+6. Deploy to Firebase:
    ```bash
    npm run deploy
    ```
+
+If you encounter any issues with deployment, you can try:
+```bash
+npm run firebase:setup
+```
+This will prompt you to select your Firebase project and set it as the default for this directory.
 
 ## Technologies Used
 
