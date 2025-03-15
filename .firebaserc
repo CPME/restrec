@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "your-firebase-project-id"
-  }
+    "default": "restaurant-recommender-a-a4f5b",
+    "restrec": "restaurant-recommender-a-a4f5b"
+  },
+  "targets": {},
+  "etags": {}
 }
