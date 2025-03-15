@@ -4,10 +4,24 @@
   "description": "Restaurant recommendation app using Google Maps API",
   "main": "app.js",
   "scripts": {
+    "start": "serve build",
     "build": "node build.js",
-    "deploy": "npm run build && firebase deploy"
+    "deploy": "npm run build && firebase deploy",
+    "dev": "serve ."
   },
   "dependencies": {
     "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "author": "Eric Veber",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CPME/restrec.git"
   }
 }
